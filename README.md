@@ -4,8 +4,8 @@ A Conomy Plugin
 
 # Commands
  /Balance:
-   - Permission: NextConomy.Command.Balance 
+   Permission: NextConomy.Command.Balance 
  /Balance <Player>
-   - Permission: NextConomy.Command.BalanceOther
+   Permission: NextConomy.Command.BalanceOther
  /Pay <Player> <Amount>
-   - Permission: NextConomy.Command.Pay
+   Permission: NextConomy.Command.Pay
