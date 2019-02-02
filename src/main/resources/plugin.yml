@@ -1,0 +1,12 @@
+name: NextConomy
+author: 30TageBan
+main: de.tageban.nextconomy.NextConomy
+version: ${project.version}
+softdepend:
+  - Vault
+description: A Economy Plugin
+database: true
+
+commands:
+  Balance:
+  Pay:

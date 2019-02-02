@@ -1,0 +1,6 @@
+Method: SQLite
+Host: localhost
+Port: 3306
+Database: nextconomy
+Username: root
+Password: myPassword
