@@ -2,7 +2,7 @@
 A Conomy Plugin
 
 
-Command:
+# Commands
  /Balance:
    - Permission: NextConomy.Command.Balance 
  /Balance <Player>
