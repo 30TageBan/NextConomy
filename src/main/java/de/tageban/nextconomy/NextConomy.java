@@ -26,7 +26,11 @@ public class NextConomy extends JavaPlugin {
         }
 
 
-        Config messages = new Config(getDataFolder(),"Messages");
+        Config messages = new Config(getDataFolder()+"/messages","Use_This_Messages");
+        messages.copyFromDefault(this);
+        messages = new Config(getDataFolder()+"/messages","Messages_DE");
+        messages.copyFromDefault(this);
+        messages = new Config(getDataFolder()+"/messages","Messages_EN");
         messages.copyFromDefault(this);
         Config config = new Config(getDataFolder(), "Config");
         config.copyFromDefault(this);

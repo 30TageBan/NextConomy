@@ -42,7 +42,7 @@ public enum Messages {
     }
 
     public String getMessage() {
-        Config config = new Config("plugins/NextConomy","Messages");
+        Config config = new Config("plugins/NextConomy/Messages","Use_This_Messages");
         String format;
         if (config.getConfig().getString(value) == null || config.getConfig().getString(value).equals("")) {
             if (value.equals("Prefix")) {
