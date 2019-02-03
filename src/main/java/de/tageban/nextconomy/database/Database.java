@@ -5,7 +5,7 @@ public interface Database {
     void Disconnect();
     double getBalance(String uuid);
     void setBalance(String uuid, double amount);
-
+    void Clear();
     void createTabel();
     boolean isTabelExist();
     boolean isUserExist(String uuid);

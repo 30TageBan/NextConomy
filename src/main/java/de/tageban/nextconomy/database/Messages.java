@@ -18,7 +18,12 @@ public enum Messages {
     onlyPlayers("onlyPlayers","§cDas können nur Spielern machen."),
     NoPerms("NoPerms","§7Du hast §ckeinen §7Zugriff auf diesen Befehl."),
     CommandFail("CommandFail","§cBitte benutze /"),
+    Reset("Reset","§7Du hast alle Accounts Resetet."),
+    ResetPlayer("ResetPlayer","§7Du hast den Account von §a{player}§7 resetet."),
+    AddMoney("AddMoney","§7Du hast §a{player} §b{amount}e §7hinzugefügt."),
+    RemoveMoney("RemoveMoney","§7Du hast §a{player} §b{amount}e §7entfernt."),
     KeinZahl("MussZahl","§cBitte geben sie eine Zahl ein."),
+
 
 
     /* MySQL */

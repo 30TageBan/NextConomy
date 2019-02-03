@@ -48,13 +48,26 @@ public class SQLiteConnection implements Database {
         }
     }
 
+    public void Clear() {
+        if (!isTabelExist()) {
+            createTabel();
+        }
+        try {
+            PreparedStatement statement = connection.prepareStatement("DELETE FROM nextconomy");
+            statement.executeUpdate();
+            //statement.close();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }
+
     public void createTabel() {
         if (isTabelExist())
             return;
         try {
             PreparedStatement statement = connection.prepareStatement("CREATE TABLE IF NOT EXISTS nextconomy (UUID VARCHAR(100), balance DOUBLE)");
             statement.executeUpdate();
-            statement.close();
+            //statement.close();
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
@@ -79,7 +92,7 @@ public class SQLiteConnection implements Database {
             statement.setString(1, uuid);
             statement.setDouble(2, amount);
             statement.executeUpdate();
-            statement.close();
+            //statement.close();
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
@@ -90,7 +103,7 @@ public class SQLiteConnection implements Database {
             PreparedStatement statement = connection.prepareStatement("SELECT UUID FROM nextconomy WHERE UUID = ?");
             statement.setString(1, uuid);
             ResultSet rs = statement.executeQuery();
-            statement.close();
+            //statement.close();
             return rs.next();
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -101,12 +114,13 @@ public class SQLiteConnection implements Database {
     public double getBalance(String uuid) {
         if (!isUserExist(uuid)) {
             createUser(uuid, plugin.getStartBalance());
+            return plugin.getStartBalance();
         }
         try {
             PreparedStatement statement = connection.prepareStatement("SELECT * FROM nextconomy WHERE UUID = ?");
             statement.setString(1, uuid);
             ResultSet rs = statement.executeQuery();
-            statement.close();
+            //statement.close();
             while (rs.next())
                 return rs.getInt("balance");
         } catch (SQLException ex) {
@@ -125,7 +139,7 @@ public class SQLiteConnection implements Database {
             statement.setDouble(1, amount);
             statement.setString(2, uuid);
             statement.executeUpdate();
-            statement.close();
+            //statement.close();
         } catch (SQLException ex) {
             ex.printStackTrace();
         }

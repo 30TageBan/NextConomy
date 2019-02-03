@@ -15,8 +15,10 @@ onlyPlayers: "§cDas können nur Spielern machen."
 NoPerms: "§7Du hast §ckeinen §7Zugriff auf diesen Befehl."
 CommandFail: "§cBitte benutze /"
 MussZahl: "§cBitte geben sie eine Zahl ein."
-
-
+Reset: "§7Du hast alle Accounts Resetet."
+ResetPlayer: "§7Du hast den Account von §a{player}§7 resetet."
+AddMoney: "§7Du hast §a{player} §b{amount}€ §7hinzugefügt."
+RemoveMoney: "§7Du hast §a{player} §b{amount}€ §7entfernt."
 MySQLError: "§cEs gab ein Proplem mit MySQL."
 MySQLCreateTable: "§aEs wurde erfolgreich die MySQL Tabbelle {tabelle} erstellt."
 MySQLDisconnect: "§aDie verbindung zu MySQL ist abgebrochen."

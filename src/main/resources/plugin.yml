@@ -10,3 +10,4 @@ database: true
 commands:
   Balance:
   Pay:
+  Eco:

@@ -54,6 +54,19 @@ public class MySQLConnection implements Database {
         }
     }
 
+    public void Clear() {
+        if (!isTabelExist()) {
+            createTabel();
+        }
+        try {
+            PreparedStatement statement = connection.prepareStatement("DELETE FROM nextconomy");
+            statement.executeUpdate();
+            statement.close();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }
+
     public boolean isTabelExist() {
         try {
             PreparedStatement ps = connection.prepareStatement("SHOW TABLES LIKE 'nextconomy'");
