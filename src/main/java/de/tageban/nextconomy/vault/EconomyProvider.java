@@ -6,9 +6,13 @@ import net.milkbowl.vault.economy.Economy;
 import net.milkbowl.vault.economy.EconomyResponse;
 import org.bukkit.OfflinePlayer;
 
+import java.io.File;
+import java.io.FileWriter;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
+import java.text.SimpleDateFormat;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 
 public class EconomyProvider implements Economy {
@@ -124,6 +128,20 @@ public class EconomyProvider implements Economy {
 
     public EconomyResponse depositPlayer(OfflinePlayer offlinePlayer, double amount) {
         plugin.getDatabase().setBalance(offlinePlayer.getUniqueId().toString(), (getBalance(offlinePlayer) + amount));
+       /* String name = new SimpleDateFormat("yyy_MM_DD").format(new Date());
+        String message = "["+new SimpleDateFormat("HH:mm:ss DD.MM.yyyy").format(new Date())+"] Name:"+ offlinePlayer.getName()+"; UUID:"+offlinePlayer.getUniqueId()+";\r\n";
+        try {
+            File log = new File(system.getDataFolder()+"/logs/Join/",name+".txt");
+            if (!log.getParentFile().exists()) {
+                log.getParentFile().mkdirs();
+            }
+            FileWriter fileWriter = new FileWriter(log, true);
+            fileWriter.write(message);
+            fileWriter.close();
+        }
+        catch (Exception ex) {
+            ex.printStackTrace();
+        }*/
         return new EconomyResponse(amount, getBalance(offlinePlayer), EconomyResponse.ResponseType.SUCCESS, null);
     }
 

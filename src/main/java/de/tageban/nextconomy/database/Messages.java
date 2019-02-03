@@ -23,6 +23,7 @@ public enum Messages {
     AddMoney("AddMoney","§7Du hast §a{player} §b{amount}€ §7hinzugefügt."),
     RemoveMoney("RemoveMoney","§7Du hast §a{player} §b{amount}€ §7entfernt."),
     KeinZahl("MussZahl","§cBitte geben sie eine Zahl ein."),
+    NeedVault("NeedVault","§cUm das Plugin zu aktivieren, braucht er Vault."),
 
 
 
