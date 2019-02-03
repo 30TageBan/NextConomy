@@ -3,12 +3,12 @@ package de.tageban.nextconomy.database;
 public enum Messages {
 
     Prefix("Prefix","§7[§bNext§aConomy§7]"),
-    Balance("Balance","§7Du hast §b{balance}7."),
+    Balance("Balance","§7Du hast §b{balance}€§7."),
     BalanceOther("BalanceOther","§a{player} §7hat §b{balance}€§7."),
     PlayerNotExist("PlayerNotExist","§cDer Spieler war noch nie auf den Server."),
     NichtGenugGeld("NichtGenugGeld","§cDu hast nicht genügend Geld."),
     NotPaySelf("NotPaySelf","§cDu kannst nicht dir selber Geld spenden."),
-    GetPayedMoney("GetPayedMoney","§7Du hast von §b{player} §a{balance} §7erhalten."),
+    GetPayedMoney("GetPayedMoney","§7Du hast von §b{player} §a{balance}€ §7erhalten."),
     MehrGeld("MehrGeld","§cBitte schreibe eine Größere Zahl."),
     PayToggled("PayToggled","§cEr akeptiert keine Spenden."),
     PayedMoney("PayedMoney","§7Du hast §b{player} §a{balance}€ §7gespendet."),
@@ -20,8 +20,8 @@ public enum Messages {
     CommandFail("CommandFail","§cBitte benutze /"),
     Reset("Reset","§7Du hast alle Accounts Resetet."),
     ResetPlayer("ResetPlayer","§7Du hast den Account von §a{player}§7 resetet."),
-    AddMoney("AddMoney","§7Du hast §a{player} §b{amount}e §7hinzugefügt."),
-    RemoveMoney("RemoveMoney","§7Du hast §a{player} §b{amount}e §7entfernt."),
+    AddMoney("AddMoney","§7Du hast §a{player} §b{amount}€ §7hinzugefügt."),
+    RemoveMoney("RemoveMoney","§7Du hast §a{player} §b{amount}€ §7entfernt."),
     KeinZahl("MussZahl","§cBitte geben sie eine Zahl ein."),
 
 
@@ -42,13 +42,13 @@ public enum Messages {
     }
 
     public String getMessage() {
-        Config config = new Config("plugins/NextConomy/Messages","Use_This_Messages");
+        Config config = new Config("plugins/NextConomy/messages","Use_This_Messages");
         String format;
         if (config.getConfig().getString(value) == null || config.getConfig().getString(value).equals("")) {
             if (value.equals("Prefix")) {
                 format = message + " ";
             } else {
-                format = Prefix.message + message;
+                format = Prefix.message + " " +message;
             }
         }else {
             if (value.equals("Prefix")) {

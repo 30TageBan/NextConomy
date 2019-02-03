@@ -1,16 +1,20 @@
 package de.tageban.nextconomy.commands;
 
 import de.tageban.nextconomy.NextConomy;
-import de.tageban.nextconomy.database.Config;
 import de.tageban.nextconomy.database.Messages;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
 
-public class Command_Pay implements CommandExecutor {
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+public class Command_Pay implements CommandExecutor, TabCompleter {
     private NextConomy plugin;
 
     public Command_Pay(NextConomy plugin) {
@@ -68,6 +72,25 @@ public class Command_Pay implements CommandExecutor {
             return true;
         }
         return false;
+    }
+
+    public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
+        List<String> tab = new ArrayList<String>();
+        if (args.length == 1) {
+            if (args[0].isEmpty()) {
+                for (Player all : plugin.getServer().getOnlinePlayers()) {
+                    tab.add(all.getName());
+                }
+            } else {
+                for (Player all : plugin.getServer().getOnlinePlayers()) {
+                    if (all.getName().startsWith(args[0])) {
+                        tab.add(all.getName());
+                    }
+                }
+            }
+        }
+        Collections.sort(tab);
+        return tab;
     }
 
     private boolean isDouble(String s) {

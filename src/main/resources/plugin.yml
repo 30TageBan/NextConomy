@@ -9,5 +9,9 @@ database: true
 
 commands:
   Balance:
+  Bal:
+  Money:
   Pay:
   Eco:
+  Economy:
+  Conomy:

@@ -7,8 +7,14 @@ import org.bukkit.OfflinePlayer;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.command.TabCompleter;
+import org.bukkit.entity.Player;
 
-public class Command_Eco implements CommandExecutor {
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+public class Command_Eco implements CommandExecutor, TabCompleter {
 
     private final NextConomy plugin;
 
@@ -94,6 +100,47 @@ public class Command_Eco implements CommandExecutor {
 
 
         return false;
+    }
+
+
+    public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
+        List<String> tab = new ArrayList<String>();
+
+        List<String> ags1 = new ArrayList<String>();
+        ags1.add("Add");
+        ags1.add("Remove");
+        ags1.add("Reset");
+
+        if (args.length == 1) {
+            if (args[0].isEmpty()) {
+                for (String all : ags1) {
+                    tab.add(all);
+                }
+            } else {
+                for (String all : ags1) {
+                    if (all.startsWith(args[0])) {
+                        tab.add(all);
+                    }
+                }
+            }
+        }
+
+        if (args.length == 2) {
+            if (args[1].isEmpty()) {
+                for (Player all : plugin.getServer().getOnlinePlayers()) {
+                    tab.add(all.getName());
+                }
+            } else {
+                for (Player all : plugin.getServer().getOnlinePlayers()) {
+                    if (all.getName().startsWith(args[1])) {
+                        tab.add(all.getName());
+                    }
+                }
+            }
+        }
+
+        Collections.sort(tab);
+        return tab;
     }
 
     private boolean isDouble(String s) {

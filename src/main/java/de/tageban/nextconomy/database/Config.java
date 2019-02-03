@@ -6,7 +6,9 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStream;
 
 public class Config {
     protected File configFile;
@@ -30,7 +32,12 @@ public class Config {
 
     public void copyFromDefault(NextConomy plugin) {
         if (!configFile.exists()) {
-            plugin.saveResource(configFile.getName(),false);
+            if (configFile.getName().contains("Messages")) {
+                plugin.saveResource("messages/"+configFile.getName(),false);
+            }
+            else {
+                plugin.saveResource(configFile.getName(),false);
+            }
             config = YamlConfiguration.loadConfiguration(configFile);
         }
     }

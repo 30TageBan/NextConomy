@@ -3,6 +3,7 @@ package de.tageban.nextconomy.database;
 import de.tageban.nextconomy.NextConomy;
 
 import java.io.File;
+import java.io.IOException;
 import java.sql.*;
 
 public class SQLiteConnection implements Database {
@@ -30,7 +31,12 @@ public class SQLiteConnection implements Database {
             db.getParentFile().mkdirs();
         }
         if (!db.exists()) {
-            db.mkdirs();
+            try {
+                db.createNewFile();
+            }
+            catch (IOException ex) {
+                ex.printStackTrace();
+            }
         }
         try {
             connection = DriverManager.getConnection("jdbc:sqlite:" + plugin.getDataFolder() + "/Database.db");
