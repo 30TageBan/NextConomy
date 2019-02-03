@@ -22,8 +22,9 @@ public class NextConomy extends JavaPlugin {
     public void onEnable() {
 
         if (!getDataFolder().exists()) {
-            getDataFolder().mkdirs();
+            getDataFolder().mkdir();
         }
+
 
         Config messages = new Config(getDataFolder(),"Messages");
         messages.copyFromDefault(this);
