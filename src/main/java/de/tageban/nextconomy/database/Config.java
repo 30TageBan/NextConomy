@@ -14,11 +14,17 @@ public class Config {
 
     public Config(File folder, String name) {
         configFile = new File(folder, name + ".yml");
+        if (!configFile.getParentFile().exists()) {
+            configFile.getParentFile().mkdirs();
+        }
         config = YamlConfiguration.loadConfiguration(this.configFile);
     }
 
     public Config(String folder, String name) {
         configFile = new File(folder, name + ".yml");
+        if (!configFile.getParentFile().exists()) {
+            configFile.getParentFile().mkdirs();
+        }
         config = YamlConfiguration.loadConfiguration(this.configFile);
     }
 

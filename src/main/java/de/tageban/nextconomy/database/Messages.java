@@ -27,10 +27,10 @@ public enum Messages {
 
 
     /* MySQL */
-    MySQLError("MySQLError","§cEs gab ein Proplem mit MySQL."),
-    MySQLCreateTable("MySQLCreateTable","§aEs wurde erfolgreich die MySQL Tabbelle {tabelle} erstellt."),
+    MySQLError("MySQLError","§cEs gab ein Problem mit MySQL."),
+    MySQLCreateTable("MySQLCreateTable","§aEs wurde erfolgreich die MySQL Tabelle {tabelle} erstellt."),
     MySQLDisconnect("MySQLDisconnect","§aDie verbindung zu MySQL ist abgebrochen."),
-    MySQLDisconnectError("MySQLDisconnectError","§cMySQL kann die verbindung abbrechen."),
+    MySQLDisconnectError("MySQLDisconnectError","§MySQL kann nicht die verbindung abbrechen."),
     MySQLConnectError("MySQLConnectError","§cMySQL kann die verbindung nicht aufbauen."),
     MySQLConnect("MySQLConnect","§aDie verbindung zu MySQL ist aufgebaut.");
 
