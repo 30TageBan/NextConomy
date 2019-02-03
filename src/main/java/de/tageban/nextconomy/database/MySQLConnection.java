@@ -34,7 +34,9 @@ public class MySQLConnection implements Database {
 
     public void Disconnect() {
         try {
-            connection.close();
+            if (connection != null && !connection.isClosed()) {
+                connection.close();
+            }
             connection = null;
         }
         catch (SQLException ex) {
@@ -106,6 +108,7 @@ public class MySQLConnection implements Database {
     public double getBalance(String uuid) {
         if (!isUserExist(uuid)) {
             createUser(uuid, plugin.getStartBalance());
+            return plugin.getStartBalance();
         }
         try {
             PreparedStatement ps = connection.prepareStatement("SELECT * FROM nextconomy WHERE UUID = ?");
@@ -117,7 +120,7 @@ public class MySQLConnection implements Database {
         catch (SQLException ex) {
             ex.printStackTrace();
         }
-        return 0;
+        return plugin.getStartBalance();
     }
 
     public void setBalance(String uuid, double amount) {

@@ -193,7 +193,7 @@ public class EconomyProvider implements Economy {
     public double getBalance(String s) {
         OfflinePlayer offlinePlayer = plugin.getServer().getOfflinePlayer(s);
         if (offlinePlayer == null) {
-            return 0;
+            return plugin.getStartBalance();
         }
         return getBalance(offlinePlayer);
     }

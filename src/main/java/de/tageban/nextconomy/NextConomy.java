@@ -25,14 +25,9 @@ public class NextConomy extends JavaPlugin {
         messages_DE.copyFromDefault(this);
         Config messages_EN = new Config(getDataFolder() + "/messages", "Messages_EN");
         messages_EN.copyFromDefault(this);
-        if (getServer().getServicesManager().getRegistration(Economy.class) == null) {
-            setEnabled(false);
-            getServer().getConsoleSender().sendMessage(Messages.NeedVault.getMessage());
-            return;
-        }
         Config config = new Config(getDataFolder(), "Config");
         config.copyFromDefault(this);
-        StartBalance = config.getConfig().getDouble("StarBalance");
+        StartBalance = config.getConfig().getDouble("StartBalance");
         /* Database */
         Config databaseConfig = new Config(getDataFolder(), "Database");
         databaseConfig.copyFromDefault(this);
@@ -45,6 +40,10 @@ public class NextConomy extends JavaPlugin {
         database.createTabel();
         vaultHook = new VaultHook(this);
         vaultHook.hook();
+        if (getServer().getServicesManager().getRegistration(Economy.class) == null) {
+            getServer().getConsoleSender().sendMessage(Messages.NeedVault.getMessage());
+            return;
+        }
         economy = getServer().getServicesManager().getRegistration(Economy.class).getProvider();
         initializeCommands();
         setEnabled(true);
