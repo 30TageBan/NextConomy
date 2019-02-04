@@ -6,6 +6,8 @@ import de.tageban.nextconomy.vault.VaultHook;
 import net.milkbowl.vault.economy.Economy;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.util.Arrays;
+
 public class NextConomy extends JavaPlugin {
 
     private VaultHook vaultHook;
@@ -101,6 +103,19 @@ public class NextConomy extends JavaPlugin {
         getCommand("Pay").setPermissionMessage(Messages.NoPerms.getMessage());
         getCommand("Pay").setUsage(Messages.CommandFail.getMessage() + "Pay <Player> <Amount>");
         getCommand("Pay").setDescription("Pay a player Balance.");
+
+        getCommand("TogglePay").setExecutor(new Command_TogglePay(this));
+        getCommand("TogglePay").setTabCompleter(new Command_TogglePay(this));
+        getCommand("TogglePay").setPermission("NextConomy.Command.TogglePay");
+        getCommand("TogglePay").setPermissionMessage(Messages.NoPerms.getMessage());
+        getCommand("TogglePay").setUsage(Messages.CommandFail.getMessage() + "TogglePay");
+        getCommand("TogglePay").setDescription("Toggle.");
+        getCommand("PayToggle").setExecutor(new Command_TogglePay(this));
+        getCommand("PayToggle").setTabCompleter(new Command_TogglePay(this));
+        getCommand("PayToggle").setPermission("NextConomy.Command.TogglePay");
+        getCommand("PayToggle").setPermissionMessage(Messages.NoPerms.getMessage());
+        getCommand("PayToggle").setUsage(Messages.CommandFail.getMessage() + "TogglePay");
+        getCommand("PayToggle").setDescription("Toggle.");
     }
 
     public double getStartBalance() {

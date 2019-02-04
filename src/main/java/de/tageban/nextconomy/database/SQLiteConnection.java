@@ -33,8 +33,7 @@ public class SQLiteConnection implements Database {
         if (!db.exists()) {
             try {
                 db.createNewFile();
-            }
-            catch (IOException ex) {
+            } catch (IOException ex) {
                 ex.printStackTrace();
             }
         }
@@ -73,7 +72,7 @@ public class SQLiteConnection implements Database {
         if (isTabelExist())
             return;
         try {
-            PreparedStatement statement = connection.prepareStatement("CREATE TABLE IF NOT EXISTS nextconomy (UUID VARCHAR(100), balance DOUBLE)");
+            PreparedStatement statement = connection.prepareStatement("CREATE TABLE IF NOT EXISTS nextconomy (UUID VARCHAR(100), balance DOUBLE, toggle BOOLEAN)");
             statement.executeUpdate();
             //statement.close();
         } catch (SQLException ex) {
@@ -96,9 +95,10 @@ public class SQLiteConnection implements Database {
         if (isUserExist(uuid))
             return;
         try {
-            PreparedStatement statement = connection.prepareStatement("INSERT INTO nextconomy (UUID, balance) VALUES(?,?)");
+            PreparedStatement statement = connection.prepareStatement("INSERT INTO nextconomy (UUID, balance, toggle) VALUES(?,?,?)");
             statement.setString(1, uuid);
             statement.setDouble(2, amount);
+            statement.setBoolean(3, false);
             statement.executeUpdate();
             //statement.close();
         } catch (SQLException ex) {
@@ -152,4 +152,39 @@ public class SQLiteConnection implements Database {
             ex.printStackTrace();
         }
     }
+
+    public boolean getTogglePay(String uuid) {
+        if (!isUserExist(uuid)) {
+            createUser(uuid, plugin.getStartBalance());
+            return false;
+        }
+        try {
+            PreparedStatement statement = connection.prepareStatement("SELECT * FROM nextconomy WHERE UUID = ?");
+            statement.setString(1, uuid);
+            ResultSet rs = statement.executeQuery();
+            //statement.close();
+            while (rs.next())
+                return rs.getBoolean("toggle");
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return false;
+    }
+
+    public void updateTogglePay(String uuid, boolean bool) {
+        if (!isUserExist(uuid)) {
+            createUser(uuid, plugin.getStartBalance());
+            return;
+        }
+        try {
+            PreparedStatement statement = connection.prepareStatement("UPDATE nextconomy SET toggle = ? WHERE UUID = ?");
+            statement.setBoolean(1, bool);
+            statement.setString(2, uuid);
+            statement.executeUpdate();
+            //statement.close();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }
+
 }

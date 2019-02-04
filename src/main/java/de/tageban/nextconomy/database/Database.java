@@ -10,5 +10,7 @@ public interface Database {
     boolean isTabelExist();
     boolean isUserExist(String uuid);
     void createUser(String uuid, double amount);
+    boolean getTogglePay(String uuid);
+    void updateTogglePay(String uuid, boolean bool);
 
 }

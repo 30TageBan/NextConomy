@@ -53,12 +53,11 @@ public class Command_Pay implements CommandExecutor, TabCompleter {
             if (Double.valueOf(args[1]) < 0.001) {
                 player.sendMessage(Messages.MehrGeld.getMessage());
                 return true;
-            }/*
-            Config config = new Config(plugin.getDataFolder() + "/playerdata", player.getUniqueId().toString());
-            if (ssc.getConfig().getBoolean("Toggle.Pay")) {
-                player.sendMessage(Messages.PayToggled.getMessage());
-                return;
-            }*/
+            }
+            if (plugin.getDatabase().getTogglePay(traget.getUniqueId().toString())) {
+                player.sendMessage(Messages.PayToggled.getMessage().replace("{player}", traget.getName()));
+                return true;
+            }
             if (!plugin.getEconomy().has(player, Double.valueOf(args[1].replaceAll(",", ".")))) {
                 player.sendMessage(Messages.NichtGenugGeld.getMessage());
                 return true;
@@ -78,13 +77,15 @@ public class Command_Pay implements CommandExecutor, TabCompleter {
         List<String> tab = new ArrayList<String>();
         if (args.length == 1) {
             if (args[0].isEmpty()) {
-                for (Player all : plugin.getServer().getOnlinePlayers()) {
+                for (OfflinePlayer all : plugin.getServer().getOfflinePlayers()) {
                     tab.add(all.getName());
                 }
             } else {
-                for (Player all : plugin.getServer().getOnlinePlayers()) {
+                for (OfflinePlayer all : plugin.getServer().getOfflinePlayers()) {
                     if (all.getName().startsWith(args[0])) {
-                        tab.add(all.getName());
+                        if (!plugin.getDatabase().getTogglePay(all.getUniqueId().toString())) {
+                            tab.add(all.getName());
+                        }
                     }
                 }
             }
